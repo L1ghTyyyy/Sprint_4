@@ -92,9 +92,15 @@ class TestBooksCollector:
         collector.delete_book_from_favorites(book_name)
         assert book_name not in collector.get_list_of_favorites_books()
 
-    def test_get_list_of_favorites_books(self):
+    def test_get_list_of_favorites_books_contains_added_book(self):
+        collector = BooksCollector()
+        collector.add_new_book("Гарри Поттер")
+        collector.add_book_in_favorites("Гарри Поттер")
+        assert collector.get_list_of_favorites_books() == ["Гарри Поттер"]
+
+    def test_get_list_of_favorites_books_does_not_contain_non_favorite_books(self):
         collector = BooksCollector()
         collector.add_new_book("Гарри Поттер")
         collector.add_new_book("Дюна")
         collector.add_book_in_favorites("Гарри Поттер")
-        assert collector.get_list_of_favorites_books() == ["Гарри Поттер"]
+        assert "Дюна" not in collector.get_list_of_favorites_books()
