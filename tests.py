@@ -93,4 +93,3 @@ class TestBooksCollector:
         collector.add_new_book("Дюна")
         collector.add_book_in_favorites("Гарри Поттер")
         assert collector.get_list_of_favorites_books() == ["Гарри Поттер"]
-
